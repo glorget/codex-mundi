@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codex Mundi — L'académie des sorciers du code</title>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="bg-a" class="bg-layer"></div>
+<div id="bg-b" class="bg-layer"></div>
+<div class="bg-overlay"></div>
+<div id="app">
+
+<div id="py-loader">
+  <div class="loader-dot"></div>
+  <span id="py-status">Chargement de Python...</span>
+</div>
+
+<div id="tuto-overlay">
+  <div class="tuto-panel">
+    <div class="tuto-header">
+      <span class="tuto-icon" id="tuto-icon"></span>
+      <div class="tuto-title" id="tuto-title"></div>
+    </div>
+    <div id="tuto-content"></div>
+    <button class="primary wide" id="tuto-close">J'ai compris, on continue →</button>
+  </div>
+</div>
+
+<div id="s-login" class="active">
+  <div class="game-title">⚙ Codex Mundi</div>
+  <div class="game-sub">L'académie des sorciers du code</div>
+  <div class="card login-card">
+    <h2>Choisis ton nom de sorcier</h2>
+    <label>Pseudo</label>
+    <input type="text" id="pseudo" placeholder="ex: MerlinDuCode" maxlength="20" />
+    <button class="primary wide" onclick="doLogin()">Entrer dans l'académie →</button>
+  </div>
+</div>
+
+<div id="s-oath" class="screen">
+  <div style="max-width:480px;margin:2rem auto">
+    <div class="card">
+      <h2 style="font-size:18px;font-weight:700;margin-bottom:1rem">La Première Invocation</h2>
+      <div class="narrative-box" id="oath-narrative"></div>
+      <div class="task-card">
+        <h3>Ta première invocation</h3>
+        <p>Écris un programme qui affiche exactement : <code>Je veux devenir un sorcier du code</code></p>
+      </div>
+      <div class="reward-preview">
+        <span style="font-size:16px">💎💎💎</span>
+        <span>+3 cristaux d'éther pour cette première tâche</span>
+      </div>
+      <div class="editor-label">Ton code <span class="lang-badge">Python</span></div>
+      <textarea id="oath-editor" class="code-editor" spellcheck="false"># Écris ton code ici
+</textarea>
+      <div class="run-bar">
+        <button class="primary" onclick="runOath()">Lancer l'invocation ▶</button>
+      </div>
+      <div class="output-box" id="oath-output">La sortie apparaîtra ici...</div>
+      <div class="success-card" id="oath-success">
+        <p>L'invocation est réussie !</p>
+        <div class="rewards">+3 cristaux d'éther pour cette première tâche</div>
+        <button class="primary" onclick="goMap()">Accéder à l'académie →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="s-map" class="screen" style="flex-direction:column;padding:2rem 1.5rem;max-width:560px;margin:0 auto;width:100%">
+  <div class="topbar">
+    <div>
+      <div class="topbar-title">⚙ Codex Mundi</div>
+      <div class="player-tag" id="ptag">—</div>
+    </div>
+    <div class="crystal-badge">
+      <span style="font-size:16px">💎</span>
+      <div>
+        <div class="crystal-count" id="crystals-map">0</div>
+        <div class="crystal-lbl">cristaux d'éther</div>
+      </div>
+    </div>
+  </div>
+  <div class="islands" id="islands"></div>
+  <div class="title-banner" id="title-banner" style="display:none">
+    <div class="title-label">Ton rang actuel</div>
+    <div class="title-name" id="title-name">—</div>
+  </div>
+</div>
+
+<div id="s-challenge" class="screen">
+  <div class="challenge-left"></div>
+  <div class="challenge-right">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:10px">
+        <button class="back-btn" onclick="goMap()">←</button>
+        <div>
+          <div class="topbar-title" id="ch-title">—</div>
+          <div class="player-tag" id="ptag2">—</div>
+        </div>
+      </div>
+      <div class="crystal-badge">
+        <span style="font-size:14px">💎</span>
+        <div>
+          <div class="crystal-count" id="crystals-ch">0</div>
+          <div class="crystal-lbl">cristaux d'éther</div>
+        </div>
+      </div>
+    </div>
+    <div class="narrative-box" id="ch-narrative"></div>
+    <div class="task-card">
+      <h3>Ta mission</h3>
+      <p id="ch-task"></p>
+    </div>
+    <div class="editor-label">Ton code <span class="lang-badge">Python</span></div>
+    <textarea id="ch-editor" class="code-editor" spellcheck="false"></textarea>
+    <div class="run-bar">
+      <button class="primary" onclick="runCode()">Lancer le sort ▶</button>
+      <button class="hint-btn" onclick="useHint(1)"><span style="font-size:12px">💎</span>Indice syntaxe<span class="hint-cost">−1</span></button>
+      <button class="hint-btn" onclick="useHint(2)"><span style="font-size:12px">💎</span>Indice logique<span class="hint-cost">−3</span></button>
+    </div>
+    <div class="output-box" id="ch-output">La sortie de ton sort apparaîtra ici...</div>
+    <div class="success-card" id="ch-success">
+      <p id="success-msg">Sort maîtrisé !</p>
+      <div class="rewards" id="success-rewards"></div>
+      <button class="primary" id="next-btn" onclick="nextChallenge()">Défi suivant →</button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
