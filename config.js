@@ -1,6 +1,5 @@
 // CODEX MUNDI — Configuration
-// Remplace l'URL ci-dessous par celle générée lors du déploiement de ton Apps Script
 
 const CONFIG = {
-  SCRIPT_URL: "COLLE_ICI_L_URL_DE_TON_APPS_SCRIPT"
+  SCRIPT_URL: "https://script.google.com/macros/s/AKfycbwFSryzedEk24_wxtEvAQRBOxjP483jvh7lVus8hDCOLgrT1dG3aCo5gELWkHYoIVcn/exec"
 };
