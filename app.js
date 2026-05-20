@@ -316,7 +316,7 @@ function showScreen(id){
   });
   const el = document.getElementById(id);
   el.classList.add('active');
-  if(id !== 's-login') el.style.display='flex';
+  el.style.display='flex';
   window.scrollTo(0,0);
   // Fond selon l'écran
   if(id === 's-login') setBg('login');
