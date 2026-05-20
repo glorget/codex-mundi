@@ -341,8 +341,11 @@ async function loadProgress(pseudo, onDone){
     onDone(); return;
   }
   try{
+    const controller = new AbortController();
+    const timeout = setTimeout(()=>controller.abort(), 3000);
     const url = CONFIG.SCRIPT_URL + '?action=load&pseudo=' + encodeURIComponent(pseudo);
-    const res = await fetch(url);
+    const res = await fetch(url, {signal: controller.signal});
+    clearTimeout(timeout);
     const data = await res.json();
     if(data.ok && data.found){
       G.crystals = data.cristaux || 0;
@@ -350,7 +353,6 @@ async function loadProgress(pseudo, onDone){
       for(let i=0; i<4; i++){
         G.progress[i] = data.progress[i] || [];
       }
-      // Si déjà entré dans l'académie, aller directement à la carte
       const totalDone = Object.values(G.progress).filter(Array.isArray).reduce((s,a)=>s+a.length,0);
       if(totalDone > 0 || G.crystals > 0){
         document.getElementById('ptag').textContent = pseudo;
@@ -361,9 +363,8 @@ async function loadProgress(pseudo, onDone){
         return;
       }
     }
-  } catch(e){ /* silencieux si pas de connexion */ }
+  } catch(e){ /* silencieux — timeout ou pas de connexion */ }
   onDone();
-}
 
 function saveProgress(){
   if(!CONFIG.SCRIPT_URL || CONFIG.SCRIPT_URL.includes('COLLE_ICI')) return;
