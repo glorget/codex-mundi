@@ -557,3 +557,4 @@ document.getElementById('pseudo').addEventListener('keydown',e=>{ if(e.key==='En
 showScreen('s-login');
 setBg('login');
 loadPy();
+});
