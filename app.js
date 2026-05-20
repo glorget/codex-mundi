@@ -554,4 +554,5 @@ function nextChallenge(){
 
 document.getElementById('pseudo').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
 setBg('login');
+showScreen('s-login');
 loadPy();
