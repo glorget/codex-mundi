@@ -553,9 +553,7 @@ function nextChallenge(){
   else goMap();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('pseudo').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
-  showScreen('s-login');
-  setBg('login');
-  loadPy();
-});
+document.getElementById('pseudo').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
+showScreen('s-login');
+setBg('login');
+loadPy();
