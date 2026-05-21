@@ -337,7 +337,7 @@ function showTutorial(tuto, onClose){
 }
 
 async function loadProgress(pseudo, onDone){
-  if(!CONFIG.SCRIPT_URL || CONFIG.SCRIPT_URL.includes('https://script.google.com/macros/s/AKfycbwFSryzedEk24_wxtEvAQRBOxjP483jvh7lVus8hDCOLgrT1dG3aCo5gELWkHYoIVcn/exec')){
+  if(!CONFIG.SCRIPT_URL || CONFIG.SCRIPT_URL.includes('COLLE_ICI')){
     onDone(); return;
   }
   try{
