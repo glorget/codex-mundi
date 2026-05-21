@@ -140,7 +140,7 @@ const ISLANDS = [
    tutorial:{
      title:"Les listes en Python",
      icon:"🗄️",
-     content:"<p>Une <strong>liste</strong> est une collection ordonnée d'éléments. Chaque élément a une <strong>position numérotée à partir de 0</strong> :</p><pre>elements = [\"Air\", \"Feu\", \"Eau\"]\nprint(len(elements))   # 3 — longueur de la liste\nprint(elements[0])     # \"Air\" — premier élément\nprint(elements[-1])    # \"Eau\" — dernier élément</pre><p>On peut <strong>modifier</strong>, <strong>ajouter</strong> et <strong>retirer</strong> des éléments :</p><pre>elements[1] = \"Feu magique\"  # modification\nelements.append(\"Terre\")     # ajout en fin de liste\nelements.pop()               # retire le dernier élément</pre><p>Pour <strong>parcourir</strong> une liste :</p><pre>for x in elements:\n    print(x)</pre>"
+     content:"<p>Une <strong>liste</strong> est une collection ordonnée d'éléments. Chaque élément a une <strong>position numérotée à partir de 0</strong> :</p><pre>elements = [\"Air\", \"Feu\", \"Eau\"]\nprint(len(elements))   # 3 — longueur de la liste\nprint(elements[0])     # \"Air\" — premier élément\nprint(elements[2])    # \"Eau\" — dernier élément</pre><p>On peut <strong>modifier</strong>, <strong>ajouter</strong> et <strong>retirer</strong> des éléments :</p><pre>elements[1] = \"Feu magique\"  # modification\nelements.append(\"Terre\")     # ajout en fin de liste\nelements.pop()               # retire le dernier élément</pre><p>Pour <strong>parcourir</strong> une liste :</p><pre>for x in elements:\n    print(x)</pre>"
    },
    challenges:[
     {title:"L'Inventaire des Éléments",
