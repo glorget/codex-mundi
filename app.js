@@ -342,7 +342,7 @@ async function loadProgress(pseudo, onDone){
   }
   try{
     const controller = new AbortController();
-    const timeout = setTimeout(()=>controller.abort(), 3000);
+    const timeout = setTimeout(()=>controller.abort(), 8000);
     const url = CONFIG.SCRIPT_URL + '?action=load&pseudo=' + encodeURIComponent(pseudo);
     const res = await fetch(url, {signal: controller.signal});
     clearTimeout(timeout);
