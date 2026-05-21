@@ -14,7 +14,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .bg-layer{position:fixed;inset:0;z-index:0;background-size:cover;background-position:center;transition:opacity 0.8s ease;pointer-events:none}
 #bg-a{opacity:1}
 #bg-b{opacity:0}
-.bg-overlay{position:fixed;inset:0;z-index:1;background:rgba(0,0,0,0.1);pointer-events:none;transition:opacity 0.8s ease}
+.bg-overlay{position:fixed;inset:0;z-index:1;background:rgba(0,0,0,0);pointer-events:none;transition:opacity 0.8s ease}
 #app{min-height:100vh;position:relative;z-index:2}
 .screen{display:none;min-height:100vh}
 .screen.active{display:flex;flex-direction:column}
