@@ -312,7 +312,7 @@ function setBg(key){
 function showScreen(id){
   document.querySelectorAll('.screen, #s-login').forEach(el=>{
     el.classList.remove('active');
-    if(el.id !== 's-login') el.style.display='';
+    el.style.display='none';
   });
   const el = document.getElementById(id);
   el.classList.add('active');
