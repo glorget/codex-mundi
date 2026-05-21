@@ -365,6 +365,7 @@ async function loadProgress(pseudo, onDone){
     }
   } catch(e){ /* silencieux — timeout ou pas de connexion */ }
   onDone();
+}
 
 function saveProgress(){
   if(!CONFIG.SCRIPT_URL || CONFIG.SCRIPT_URL.includes('COLLE_ICI')) return;
